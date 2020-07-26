@@ -24,3 +24,13 @@ To test running in the container
 docker run -it ubuntu:20.04godot bash
 ```
 
+In the container, can build godotjs using:
+```
+git clone https://github.com/godotengine/godot.git
+cd ./godot
+git checkout 3.2.2-stable
+git clone https://github.com/GodotExplorer/ECMAScript.git ./modules/ECMAScript
+scons -j8 platform=x11
+```
+
+
