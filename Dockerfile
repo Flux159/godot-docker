@@ -29,14 +29,15 @@ RUN git clone https://github.com/emscripten-core/emsdk.git && cd ./emsdk && ./em
 RUN git clone https://github.com/godotengine/godot.git && cd ./godot && git checkout 3.2.2-stable && git clone https://github.com/GodotExplorer/ECMAScript.git ./modules/ECMAScript
 
 # OSXCross for os x cross compilation
-RUN apt-get install -y clang gcc g++ zlib1g-dev libmpc-dev libmpfr-dev libgmp-dev
-ENV OSX_SDK MacOSX10.11.sdk
-ENV OSX_CROSS_COMMIT a9317c18a3a457ca0a657f08cc4d0d43c6cf8953
+RUN apt-get install -y clang gcc g++ zlib1g-dev libmpc-dev libmpfr-dev libgmp-dev curl cmake libxml2-dev libssl-dev
+ENV OSX_SDK MacOSX10.15.sdk
+# ENV OSX_CROSS_COMMIT a9317c18a3a457ca0a657f08cc4d0d43c6cf8953
+ENV OSX_CROSS_COMMIT master
 RUN set -x \
 	&& export OSXCROSS_PATH="/osxcross" \
 	&& git clone https://github.com/tpoechtrager/osxcross.git $OSXCROSS_PATH \
 	&& ( cd $OSXCROSS_PATH && git checkout -q $OSX_CROSS_COMMIT) \
-	&& curl -sSL https://s3.dockerproject.org/darwin/v2/${OSX_SDK}.tar.xz -o "${OSXCROSS_PATH}/tarballs/${OSX_SDK}.tar.xz" \
+ 	&& curl -sSL https://github.com/phracker/MacOSX-SDKs/releases/download/10.15/${OSX_SDK}.tar.xz -o "${OSXCROSS_PATH}/tarballs/${OSX_SDK}.tar.xz" \
 	&& UNATTENDED=yes OSX_VERSION_MIN=10.6 ${OSXCROSS_PATH}/build.sh
 ENV PATH /osxcross/target/bin:$PATH
 
