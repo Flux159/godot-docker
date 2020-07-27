@@ -48,6 +48,9 @@ Its also published as a package on github's docker registry [here](https://githu
 
 The publish process for githubs docker registry is a bit more complicated. First you need to get a token with the repo public permission, and add, read, and delete packages permissions. Save that token & use that to login via docker login to docker.pkg.github.com as below:
 ```
-docker login 
+docker login docker.pkg.github.com —username flux159
+docker tag TAGHASH docker.pkg.github.com/flux159/godot-docker/godot-docker:1.0.0
+docker push docker.pkg.github.com/flux159/godot-docker/godot-docker:1.0.0
 ```
 
+Note that the tag has to be very specific, see [this post](https://github.community/t/error-when-trying-to-push-docker-image-to-package-registry/18132/9) about its structure. Use the github package for github actions since it should be faster and should be able to be cached.
