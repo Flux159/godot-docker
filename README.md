@@ -44,3 +44,10 @@ docker login
 docker push flux159/godot:1.0.TAG_BUG_FIX
 ```
 
+Its also published as a package on github's docker registry [here](https://github.com/Flux159/godot-docker/packages/330543).
+
+The publish process for githubs docker registry is a bit more complicated. First you need to get a token with the repo public permission, and add, read, and delete packages permissions. Save that token & use that to login via docker login to docker.pkg.github.com as below:
+```
+docker login 
+```
+
