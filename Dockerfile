@@ -24,11 +24,17 @@ RUN bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
 
 # Install emscripten for web platform
 RUN git clone https://github.com/emscripten-core/emsdk.git && cd ./emsdk && ./emsdk install latest && ./emsdk activate latest
+# TODO: Currently for html5 builds, still need to do the following manually
+# ./emsdk/emsdk activate latest
+# source "/emsdk/emsdk_env.sh"
+# cd godot
+# cd modules/ECMAScript && git checkout 01bc02 && cd ../..
+# scons -j8 p=javascript tools=no target=release
 
 # For testing, want this as part of github workflow normally
-RUN git clone https://github.com/godotengine/godot.git && cd ./godot && git checkout 3.2.2-stable && git clone https://github.com/GodotExplorer/ECMAScript.git ./modules/ECMAScript
+# RUN git clone https://github.com/godotengine/godot.git && cd ./godot && git checkout 3.2.2-stable && git clone https://github.com/GodotExplorer/ECMAScript.git ./modules/ECMAScript
 
-# OSXCross for os x cross compilation
+# OSXCross for os x cross compilation. DO NOT DO THIS. The sdk stuff is a mess & has licensing issues. The sdks that are available from dockerproject.org are 10.10 and 10.11 which don't compile quickjs. The available 10.15 have legal questions and they dont have c++ headers in include/ directory. Just use a github workflow that runs on OS X containers & be much happier.
 # RUN apt-get install -y clang gcc g++ zlib1g-dev libmpc-dev libmpfr-dev libgmp-dev curl cmake libxml2-dev libssl-dev
 # ENV OSX_SDK MacOSX10.15.sdk
 # ENV OSX_CROSS_COMMIT a9317c18a3a457ca0a657f08cc4d0d43c6cf8953
