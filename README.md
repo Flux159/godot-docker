@@ -33,4 +33,5 @@ git clone https://github.com/GodotExplorer/ECMAScript.git ./modules/ECMAScript
 scons -j8 platform=x11
 ```
 
+Published as [flux159/godot](https://hub.docker.com/r/flux159/godot) on Dockerhub.
 
