@@ -33,5 +33,14 @@ git clone https://github.com/GodotExplorer/ECMAScript.git ./modules/ECMAScript
 scons -j8 platform=x11
 ```
 
-Published as [flux159/godot](https://hub.docker.com/r/flux159/godot) on Dockerhub.
+## Publishing
+
+The image is published as [flux159/godot](https://hub.docker.com/r/flux159/godot) on Dockerhub.
+
+To publish, need to tag as above, except with the correct repo:
+```
+docker tag TAGHASH flux159/godot:1.0.TAG_BUG_FIX
+docker login
+docker push flux159/godot:1.0.TAG_BUG_FIX
+```
 
