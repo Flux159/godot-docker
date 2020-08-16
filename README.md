@@ -54,3 +54,5 @@ docker push docker.pkg.github.com/flux159/godot-docker/godot-docker:1.0.0
 ```
 
 Note that the tag has to be very specific, see [this post](https://github.community/t/error-when-trying-to-push-docker-image-to-package-registry/18132/9) about its structure. Use the github package for github actions since it should be faster and should be able to be cached.
+
+WARNING: Its not possible / difficult to authenticate to github packages in a github actions workflow, so probably best to just use dockerhub.
