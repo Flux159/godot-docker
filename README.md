@@ -1,6 +1,10 @@
 # godot-docker
 Dockerfile to generate godot compilation container
 
+To see an example of usage, see [GodotExplorer/ECMAScript](https://github.com/GodotExplorer/ECMAScript/blob/master/.github/workflows/build.yml)'s github action.
+
+## Running
+
 To run:
 
 Make sure docker is installed on machine.
